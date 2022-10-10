@@ -1,0 +1,726 @@
+$ ./phpdbg   -h
+[1mphpdbg[0m is a lightweight, powerful and easy to use debugging platform for
+PHP5.4+
+It supports the following commands:
+
+[1mInformation[0m
+  [1mlist[0m      list PHP source
+  [1minfo[0m      displays information on the debug session
+  [1mprint[0m     show opcodes
+  [1mframe[0m     select a stack frame and print a stack frame summary
+  [1mgenerator[0m show active generators or select a generator frame
+  [1mback[0m      shows the current backtrace
+  [1mhelp[0m      provide help on a topic
+
+[1mStarting and Stopping Execution[0m
+  [1mexec[0m      set execution context
+  [1mstdin[0m     set executing script from stdin
+  [1mrun[0m       attempt execution
+  [1mstep[0m      continue execution until other line is reached
+  [1mcontinue[0m  continue execution
+  [1muntil[0m     continue execution up to the given location
+  [1mnext[0m      continue execution up to the given location and halt on the first
+line after it
+  [1mfinish[0m    continue up to end of the current execution frame
+  [1mleave[0m     continue up to end of the current execution frame and halt after
+the calling instruction
+  [1mbreak[0m     set a breakpoint at the specified target
+  [1mwatch[0m     set a watchpoint on $variable
+  [1mclear[0m     clear one or all breakpoints
+  [1mclean[0m     clean the execution environment
+
+[1mMiscellaneous[0m
+  [1mset[0m       set the phpdbg configuration
+  [1msource[0m    execute a phpdbginit script
+  [1mregister[0m  register a phpdbginit function as a command alias
+  [1msh[0m        shell a command
+  [1mev[0m        evaluate some code
+  [1mquit[0m      exit phpdbg
+
+Type [1mhelp <command>[0m or ([1mhelp alias[0m) to get detailed help on any of the above
+
+---Type <return> to continue or q <return> to quit---
+commands, for example [1mhelp list[0m or [1mh l[0m.  Note that help will also match
+partial commands if unique (and list out options if not unique), so [1mhelp exp[0m
+will give help on the [1mexport[0m command, but [1mhelp ex[0m will list the summary for
+[1mexec[0m and [1mexport[0m.
+
+Type [1mhelp aliases[0m to show a full alias list, including any registered phpdginit
+functions
+Type [1mhelp syntax[0m for a general introduction to the command syntax.
+Type [1mhelp options[0m for a list of phpdbg command line options.
+Type [1mhelp phpdbginit[0m to show how to customise the debugger environment.
+
+requested help page could not be found
+
+=================================================================
+==865119==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 2912 byte(s) in 91 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c498f8 in zend_register_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2061:27
+    #3 0x1c4ec1f in zend_register_internal_module /home/root/php/sourcecode/php/Zend/zend_API.c:2079:9
+    #4 0x18af154 in php_register_extensions /home/root/php/sourcecode/php/main/main.c:1959:8
+    #5 0x2469da8 in php_register_internal_extensions /home/root/php/sourcecode/php/main/internal_functions_cli.c:84:9
+    #6 0x18b02c1 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2242:6
+    #7 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #8 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #9 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 576 byte(s) in 18 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c498f8 in zend_register_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2061:27
+    #3 0x1d0491a in zend_startup_builtin_functions /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:64:31
+    #4 0x1c1345f in zend_startup /home/root/php/sourcecode/php/Zend/zend.c:960:2
+    #5 0x18af8c8 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2094:2
+    #6 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #7 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #8 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 256 byte(s) in 8 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x22fdda3 in zend_register_default_exception /home/root/php/sourcecode/php/Zend/zend_exceptions.c:789:18
+    #6 0x24184fe in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:33:2
+    #7 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 256 byte(s) in 8 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x22fdac5 in zend_register_default_exception /home/root/php/sourcecode/php/Zend/zend_exceptions.c:778:22
+    #6 0x24184fe in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:33:2
+    #7 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 192 byte(s) in 6 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cffd3 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6632:29
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 192 byte(s) in 6 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x236de8a in zend_register_generator_ce /home/root/php/sourcecode/php/Zend/zend_generators.c:1124:22
+    #5 0x241850d in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:36:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 192 byte(s) in 6 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c57eba in zend_register_internal_interface /home/root/php/sourcecode/php/Zend/zend_API.c:2846:9
+    #4 0x22fd893 in zend_register_default_exception /home/root/php/sourcecode/php/Zend/zend_exceptions.c:771:2
+    #5 0x24184fe in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:33:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 160 byte(s) in 5 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xfee70c in phar_object_init /home/root/php/sourcecode/php/ext/phar/phar_object.c:5084:20
+    #6 0xf7cddd in zm_startup_phar /home/root/php/sourcecode/php/ext/phar/phar.c:3472:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 160 byte(s) in 5 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xfee8a9 in phar_object_init /home/root/php/sourcecode/php/ext/phar/phar_object.c:5089:17
+    #6 0xf7cddd in zm_startup_phar /home/root/php/sourcecode/php/ext/phar/phar.c:3472:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 128 byte(s) in 4 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cf859 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6592:28
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 96 byte(s) in 3 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cee41 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6544:29
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 96 byte(s) in 3 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x22e02c9 in zend_register_interfaces /home/root/php/sourcecode/php/Zend/zend_interfaces.c:624:30
+    #5 0x24184f9 in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:32:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 96 byte(s) in 3 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c498f8 in zend_register_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2061:27
+    #3 0x1c4ec1f in zend_register_internal_module /home/root/php/sourcecode/php/Zend/zend_API.c:2079:9
+    #4 0x18b4b69 in php_register_extensions_bc /home/root/php/sourcecode/php/main/main.c:1978:7
+    #5 0x18b033b in php_module_startup /home/root/php/sourcecode/php/main/main.c:2248:2
+    #6 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #7 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #8 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 96 byte(s) in 3 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x184deb0 in zm_startup_tokenizer /home/root/php/sourcecode/php/ext/tokenizer/tokenizer.c:263:17
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cef90 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6550:24
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x234dcda in zend_register_weakref_ce /home/root/php/sourcecode/php/Zend/zend_weakrefs.c:637:20
+    #5 0x2418512 in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:37:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cfee4 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6628:29
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cfd5e in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6621:34
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cfc27 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6615:29
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cfa58 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6604:34
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 64 byte(s) in 2 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cf598 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6577:25
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xbaa460 in zm_startup_dom /home/root/php/sourcecode/php/ext/dom/php_dom.c:672:29
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c57eba in zend_register_internal_interface /home/root/php/sourcecode/php/Zend/zend_API.c:2846:9
+    #4 0xba895b in zm_startup_dom /home/root/php/sourcecode/php/ext/dom/php_dom.c:591:30
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x10ceb84 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6532:28
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x10cea2d in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6526:37
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0xe780e4 in pdo_stmt_init /home/root/php/sourcecode/php/ext/pdo/pdo_stmt.c:2582:18
+    #5 0xe210d4 in zm_startup_pdo /home/root/php/sourcecode/php/ext/pdo/pdo.c:314:2
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1178900 in spl_register_std_class /home/root/php/sourcecode/php/ext/spl/spl_functions.c:42:10
+    #5 0x126d0bb in zm_startup_spl_fixedarray /home/root/php/sourcecode/php/ext/spl/spl_fixedarray.c:876:2
+    #6 0x11778b7 in zm_startup_spl /home/root/php/sourcecode/php/ext/spl/php_spl.c:726:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x6c1fd2 in date_register_classes /home/root/php/sourcecode/php/ext/date/php_date.c:1729:19
+    #6 0x6c0185 in zm_startup_date /home/root/php/sourcecode/php/ext/date/php_date.c:388:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x10cf264 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6560:30
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x10cf373 in zm_startup_reflection /home/root/php/sourcecode/php/ext/reflection/php_reflection.c:6564:26
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x1178e50 in spl_register_sub_class /home/root/php/sourcecode/php/ext/spl/spl_functions.c:57:10
+    #6 0x121f115 in zm_startup_spl_directory /home/root/php/sourcecode/php/ext/spl/spl_directory.c:2803:2
+    #7 0x1177896 in zm_startup_spl /home/root/php/sourcecode/php/ext/spl/php_spl.c:723:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x1178e50 in spl_register_sub_class /home/root/php/sourcecode/php/ext/spl/spl_functions.c:57:10
+    #6 0x121ecc9 in zm_startup_spl_directory /home/root/php/sourcecode/php/ext/spl/spl_directory.c:2768:2
+    #7 0x1177896 in zm_startup_spl /home/root/php/sourcecode/php/ext/spl/php_spl.c:723:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1178900 in spl_register_std_class /home/root/php/sourcecode/php/ext/spl/spl_functions.c:42:10
+    #5 0x121eb5b in zm_startup_spl_directory /home/root/php/sourcecode/php/ext/spl/spl_directory.c:2756:2
+    #6 0x1177896 in zm_startup_spl /home/root/php/sourcecode/php/ext/spl/php_spl.c:723:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x1178e50 in spl_register_sub_class /home/root/php/sourcecode/php/ext/spl/spl_functions.c:57:10
+    #6 0x11ba626 in zm_startup_spl_iterators /home/root/php/sourcecode/php/ext/spl/spl_iterators.c:3287:2
+    #7 0x1177880 in zm_startup_spl /home/root/php/sourcecode/php/ext/spl/php_spl.c:721:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x234da94 in zend_register_weakref_ce /home/root/php/sourcecode/php/Zend/zend_weakrefs.c:623:20
+    #5 0x2418512 in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:37:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x114aeb1 in zm_startup_simplexml /home/root/php/sourcecode/php/ext/simplexml/simplexml.c:2693:20
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0xd0f4ed in zm_startup_hash /home/root/php/sourcecode/php/ext/hash/hash.c:1614:23
+    #5 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #6 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #7 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #8 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #9 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #10 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #11 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #12 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xbab78b in zm_startup_dom /home/root/php/sourcecode/php/ext/dom/php_dom.c:713:2
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xbaadf8 in zm_startup_dom /home/root/php/sourcecode/php/ext/dom/php_dom.c:690:2
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0xbaa92a in zm_startup_dom /home/root/php/sourcecode/php/ext/dom/php_dom.c:682:33
+    #6 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #7 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #8 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #9 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #10 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #11 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #12 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #13 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c569c7 in zend_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2840:9
+    #4 0x1c568d9 in zend_register_internal_class_ex /home/root/php/sourcecode/php/Zend/zend_API.c:2803:19
+    #5 0x22fdc37 in zend_register_default_exception /home/root/php/sourcecode/php/Zend/zend_exceptions.c:784:28
+    #6 0x24184fe in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:33:2
+    #7 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #8 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #9 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #10 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #11 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #12 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #13 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #14 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #15 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x684fae in __interceptor_malloc /local/mnt/workspace/bcain_clang_hu-bcain-lv_22036/final/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x1c4d491 in zend_register_functions /home/root/php/sourcecode/php/Zend/zend_API.c:2482:19
+    #2 0x1c57434 in do_register_internal_class /home/root/php/sourcecode/php/Zend/zend_API.c:2776:3
+    #3 0x1c57eba in zend_register_internal_interface /home/root/php/sourcecode/php/Zend/zend_API.c:2846:9
+    #4 0x22e01e6 in zend_register_interfaces /home/root/php/sourcecode/php/Zend/zend_interfaces.c:621:23
+    #5 0x24184f9 in zend_register_default_classes /home/root/php/sourcecode/php/Zend/zend_default_classes.c:32:2
+    #6 0x1d047ef in zm_startup_core /home/root/php/sourcecode/php/Zend/zend_builtin_functions.c:40:2
+    #7 0x1c45fb8 in zend_startup_module_ex /home/root/php/sourcecode/php/Zend/zend_API.c:1874:7
+    #8 0x1c47ea2 in zend_startup_module_zval /home/root/php/sourcecode/php/Zend/zend_API.c:1889:10
+    #9 0x1ce4dd4 in zend_hash_apply /home/root/php/sourcecode/php/Zend/zend_hash.c:1837:12
+    #10 0x1c4760c in zend_startup_modules /home/root/php/sourcecode/php/Zend/zend_API.c:2000:2
+    #11 0x18b0345 in php_module_startup /home/root/php/sourcecode/php/main/main.c:2258:2
+    #12 0x24808b4 in php_sapi_phpdbg_module_startup /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:752:6
+    #13 0x24782d8 in main /home/root/php/sourcecode/php/sapi/phpdbg/phpdbg.c:1621:6
+    #14 0x7f631a721082 in __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+SUMMARY: AddressSanitizer: 6528 byte(s) leaked in 204 allocation(s).
